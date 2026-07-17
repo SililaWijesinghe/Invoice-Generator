@@ -1,4 +1,4 @@
-import * as htmlToImage from 'html-to-image';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 export const formatCurrency = (amount: number): string => {
@@ -14,10 +14,14 @@ export const generatePDF = async (elementId: string, invoiceNo: string) => {
   if (!element) return;
 
   try {
-    const imgData = await htmlToImage.toPng(element, {
-      pixelRatio: 3, // Higher resolution
-      backgroundColor: '#ffffff',
+    const canvas = await html2canvas(element, {
+      scale: 3, // Higher resolution
+      useCORS: true,
+      logging: false,
+      backgroundColor: '#ffffff'
     });
+
+    const imgData = canvas.toDataURL('image/png');
     
     // A4 dimensions in mm: 210 x 297
     const pdf = new jsPDF({
@@ -27,10 +31,7 @@ export const generatePDF = async (elementId: string, invoiceNo: string) => {
     });
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
-    // Use A4 aspect ratio instead of actual canvas aspect ratio 
-    // to ensure the image scales to fit the page exactly.
-    // Given the container is 210x297mm, it should perfectly map to A4.
-    const pdfHeight = pdf.internal.pageSize.getHeight();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
 
     pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
     pdf.save(`Invoice-${invoiceNo || 'Draft'}.pdf`);

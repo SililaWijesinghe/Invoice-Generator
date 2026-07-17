@@ -36,17 +36,17 @@ export default function InvoiceTemplateA({ data }: { data: InvoiceData }) {
       </div>
 
       {/* 2 & 3 & 4. Divider, Invoice Box, Divider */}
-      <div className="border-t border-black mb-4"></div>
+      <div className="border-t border-[#000000] mb-4"></div>
       <div className="flex justify-center mb-4">
-        <div className="border border-black px-8 py-1">
+        <div className="border border-[#000000] px-8 py-1">
           <h2 className="text-xl font-bold tracking-[0.2em] uppercase">Invoice</h2>
         </div>
       </div>
-      <div className="border-t border-black mb-6"></div>
+      <div className="border-t border-[#000000] mb-6"></div>
 
       {/* 5. Two-column bordered info block */}
-      <div className="flex border border-black mb-8">
-        <div className="w-1/2 border-r border-black p-3">
+      <div className="flex border border-[#000000] mb-8">
+        <div className="w-1/2 border-r border-[#000000] p-3">
           <div className="font-bold text-[10px] text-[#4b5563] uppercase mb-1">Bill To</div>
           <div className="font-bold text-[13px] mb-1">{data.client.clientName}</div>
           {data.client.clientCompanyName && <div className="mb-1">Company: {data.client.clientCompanyName}</div>}
@@ -79,30 +79,30 @@ export default function InvoiceTemplateA({ data }: { data: InvoiceData }) {
       </div>
 
       {/* 6. Line items table */}
-      <table className="w-full border-collapse border border-black mb-8">
+      <table className="w-full border-collapse border border-[#000000] mb-8">
         <thead>
-          <tr className="border-b border-black">
-            <th className="border-r border-black p-2 text-center w-[10%] font-bold">Serial No</th>
-            <th className="border-r border-black p-2 text-left w-[70%] font-bold">Description</th>
+          <tr className="border-b border-[#000000]">
+            <th className="border-r border-[#000000] p-2 text-center w-[10%] font-bold">Serial No</th>
+            <th className="border-r border-[#000000] p-2 text-left w-[70%] font-bold">Description</th>
             <th className="p-2 text-right w-[20%] font-bold">Amount(LKR)</th>
           </tr>
         </thead>
         <tbody>
           {data.lineItems.map((item, index) => (
-            <tr key={index} className="border-b border-black last:border-b-0">
-              <td className="border-r border-black p-2 text-center align-top">{item.serialNo}</td>
-              <td className="border-r border-black p-2 whitespace-pre-wrap align-top">{item.description}</td>
+            <tr key={index} className="border-b border-[#000000] last:border-b-0">
+              <td className="border-r border-[#000000] p-2 text-center align-top">{item.serialNo}</td>
+              <td className="border-r border-[#000000] p-2 whitespace-pre-wrap align-top">{item.description}</td>
               <td className="p-2 text-right align-top">{formatCurrency(item.amount)}</td>
             </tr>
           ))}
           {/* Spacer row */}
-          <tr className="border-b border-black">
-            <td className="border-r border-black p-2 h-8"></td>
-            <td className="border-r border-black p-2"></td>
+          <tr className="border-b border-[#000000]">
+            <td className="border-r border-[#000000] p-2 h-8"></td>
+            <td className="border-r border-[#000000] p-2"></td>
             <td className="p-2"></td>
           </tr>
-          <tr className="border-t-[2px] border-black">
-            <td colSpan={2} className="border-r border-black p-2 text-right font-bold uppercase">Net Total (LKR)</td>
+          <tr className="border-t-[2px] border-[#000000]">
+            <td colSpan={2} className="border-r border-[#000000] p-2 text-right font-bold uppercase">Net Total (LKR)</td>
             <td className="p-2 text-right font-bold">{formatCurrency(data.netTotal)}</td>
           </tr>
         </tbody>
@@ -117,7 +117,7 @@ export default function InvoiceTemplateA({ data }: { data: InvoiceData }) {
             <div className="w-[70px] h-[70px] rounded-full border border-[#d1d5db] flex items-center justify-center text-[8px] text-[#9ca3af] text-center p-2">Seal placeholder</div>
           )}
         </div>
-        <div className="italic text-[10px] text-[#4b5563] pt-2 text-justify">
+        <div className="italic text-[10px] text-[#4b5563] pt-2 text-left">
           *This electronically generated document stands validated without the requirement of a physical signature. This document is intended only for the addressees. If you are not the intended recipient, you are notified that disclosing, copying, distributing or taking any action in reliance on the contents of this information is strictly prohibited.
         </div>
       </div>
@@ -127,19 +127,19 @@ export default function InvoiceTemplateA({ data }: { data: InvoiceData }) {
         <div className="font-bold mb-8">Received By:</div>
         <div className="flex gap-4 justify-between text-center">
           <div className="flex-1">
-            <div className="border-b border-dashed border-black mb-2"></div>
+            <div className="border-b border-dashed border-[#000000] mb-2"></div>
             <div>Name</div>
           </div>
           <div className="flex-1">
-            <div className="border-b border-dashed border-black mb-2"></div>
+            <div className="border-b border-dashed border-[#000000] mb-2"></div>
             <div>NIC</div>
           </div>
           <div className="flex-1">
-            <div className="border-b border-dashed border-black mb-2"></div>
+            <div className="border-b border-dashed border-[#000000] mb-2"></div>
             <div>Signature</div>
           </div>
           <div className="flex-1">
-            <div className="border-b border-dashed border-black mb-2"></div>
+            <div className="border-b border-dashed border-[#000000] mb-2"></div>
             <div>Date</div>
           </div>
         </div>
@@ -150,13 +150,13 @@ export default function InvoiceTemplateA({ data }: { data: InvoiceData }) {
         
         {/* 9. CSR Paragraph */}
         {data.csr.enabled && (
-          <div className="text-[9.5px] text-justify mb-6 border-t border-[#e5e7eb] pt-4">
+          <div className="text-[9.5px] text-left mb-6 border-t border-[#e5e7eb] pt-4">
             {parseCsrMessage()}
           </div>
         )}
 
         {/* 10. Bank Details */}
-        <div className="border-t border-b border-black py-2 mb-4 text-center">
+        <div className="border-t border-b border-[#000000] py-2 mb-4 text-center">
           <div className="font-bold mb-1 uppercase text-[10px]">Bank Details</div>
           <div>Account Name - {data.bank.accountName} | Account Number – {data.bank.accountNumber}</div>
           <div>Bank Name - {data.bank.bankName} | Branch Name – {data.bank.branchName} | Swift Code - {data.bank.swiftCode}</div>

@@ -9,6 +9,8 @@ interface FormPaneProps {
   onChange: (data: InvoiceData) => void;
 }
 
+import { PRESET_LOGOS } from '../logos';
+
 export default function FormPane({ data, onChange }: FormPaneProps) {
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     company: false,
@@ -194,9 +196,24 @@ export default function FormPane({ data, onChange }: FormPaneProps) {
         </section>
 
         <Section id="company" title="Company Details" icon={Building2}>
+          <div>
+            <label className={labelClass}>Preset Logos</label>
+            <div className="flex gap-3 mb-2">
+              {PRESET_LOGOS.map((logo) => (
+                <button
+                  key={logo.id}
+                  title={logo.name}
+                  onClick={() => updateNested('company', 'logoDataUrl', logo.dataUrl)}
+                  className="w-12 h-12 rounded bg-slate-900 border border-slate-700 hover:border-cyan-500 flex items-center justify-center p-1 transition-colors"
+                >
+                  <img src={logo.dataUrl} alt={logo.name} className="w-full h-full object-contain" />
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className={labelClass}>Logo</label>
+              <label className={labelClass}>Custom Logo Upload</label>
               <div className="mt-1 flex justify-center p-4 border-2 border-slate-700 border-dashed rounded-lg hover:bg-slate-800 relative group">
                 {data.company.logoDataUrl ? (
                   <>

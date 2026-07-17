@@ -9,7 +9,14 @@ interface PreviewPaneProps {
 
 export default function PreviewPane({ data }: PreviewPaneProps) {
   return (
-    <div className="w-full flex justify-center overflow-x-auto pb-8 print:overflow-visible print:pb-0">
+    <div className="w-full flex flex-col items-center overflow-x-auto pb-8 print:overflow-visible print:pb-0">
+      <div className="mb-4 text-slate-400 text-sm font-medium flex items-center gap-2 print:hidden">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        </span>
+        Live PDF Preview
+      </div>
       <div className="shrink-0 w-[210mm] min-h-[297mm] bg-white shadow-2xl shadow-black/50 ring-1 ring-slate-800 print:shadow-none print:ring-0">
         <div 
           id="invoice-preview-container" 
